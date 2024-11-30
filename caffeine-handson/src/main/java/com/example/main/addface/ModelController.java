@@ -1,5 +1,7 @@
 package com.example.main.addface;
 
+import com.example.main.di.Storage;
+import com.example.main.facesresponse.Face;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,13 +14,14 @@ import java.util.Objects;
 
 @RestController
 public class ModelController {
-
-    @PostMapping("/model/add_face1")
-    public ResponseEntity<Model> addFace(
-                                         @RequestParam(name = "data", required = true) Model data,
+Storage storage = new Storage();
+    @PostMapping("/model/add_face")
+    public ResponseEntity<Face> addFace(
+                                         @RequestParam(name = "data", required = true) Face data,
                                          @RequestParam(name = "file", required = false) MultipartFile file
                                          ) throws IOException {
         saveUpladedFile(file);
+        storage.addFace(data.getUuid());
         return ResponseEntity.ok(data);
     }
 
