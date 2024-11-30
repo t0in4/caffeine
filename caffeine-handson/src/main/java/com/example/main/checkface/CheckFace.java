@@ -14,6 +14,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+// sudo curl -X POST http://localhost:8080/model/check_face -H "Content-Type: multipart/form-data" -F file=@/home/codecraftman/Pictures/shop4.jpg
+
 @RestController
 public class CheckFace {
 
